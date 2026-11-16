@@ -1,0 +1,33 @@
+(** a doc comment *)
+(* <- comment.documentation *)
+Require Import Sandbox.
+(* <- keyword *)
+(*      ^ keyword *)
+square (x : N) : N := x * x.
+(* <- function *)
+(*          ^ type.builtin *)
+(*                 ^ operator *)
+Inductive action := Increment.
+(* <- keyword *)
+(*        ^ type *)
+(*                  ^ constructor *)
+main : io unit := r <- resolve "x" ;; match r with _ => unk end.
+(*                             ^ string *)
+(*                                    ^ keyword *)
+(*                                            ^ keyword *)
+(*                                                      ^ function.builtin *)
+(*                                                          ^ keyword *)
+Lemma l : 12%N = 12.
+(* <- keyword *)
+(*    ^ function *)
+(*        ^ number *)
+(*          ^ attribute *)
+Proof.
+(* <- keyword *)
+  Take n : nat.
+(*^ keyword *)
+  We conclude that n = n.
+(*^ keyword *)
+(*   ^ keyword *)
+Qed.
+(* <- keyword *)

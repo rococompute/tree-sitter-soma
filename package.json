@@ -1,0 +1,21 @@
+{
+  "name": "tree-sitter-soma",
+  "version": "0.1.0",
+  "description": "Soma grammar for tree-sitter",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rococompute/tree-sitter-soma.git"
+  },
+  "keywords": ["incremental", "parsing", "tree-sitter", "soma", "rocq"],
+  "files": ["grammar.js", "tree-sitter.json", "queries/*", "src/**"],
+  "scripts": {
+    "generate": "tree-sitter generate --abi 14",
+    "test": "tree-sitter test",
+    "corpus": "sh scripts/parse-corpus.sh"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "0.25.10"
+  }
+}

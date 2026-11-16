@@ -1,0 +1,103 @@
+==================
+commands end at a dot before a blank, not inside names or numbers
+==================
+
+Require Import Sandbox.
+Example e : N.add 1 2 = 3%N /\ 3.5 = x.(f) := eq_refl.
+
+---
+
+(source_file
+  (sentence (identifier) (identifier) (identifier))
+  (definition
+    keyword: (keyword)
+    name: (identifier)
+    (identifier) (number) (number) (operator) (number) (scope) (operator)
+    (number) (operator) (identifier) (dot) (parenthesized (identifier))
+    (identifier)))
+
+==================
+a proof, with Waterproof sentences, bullets and braces
+==================
+
+Lemma foo : forall n, n + 0 = n.
+Proof.
+  Take n : nat.
+  - We conclude that n + 0 = n.
+  { reflexivity. }
+  2:{ lia. }
+Qed.
+
+---
+
+(source_file
+  (definition
+    keyword: (keyword)
+    name: (identifier)
+    (identifier) (identifier) (operator) (identifier) (operator) (number) (operator) (identifier))
+  (sentence (identifier))
+  (sentence (identifier) (identifier) (identifier))
+  (bullet (operator))
+  (sentence
+    (identifier) (identifier) (identifier) (identifier) (operator) (number) (operator) (identifier))
+  (focus)
+  (sentence (identifier))
+  (focus)
+  (focus goal: (number))
+  (sentence (identifier))
+  (focus)
+  (sentence (identifier)))
+
+==================
+comments nest, and a string in one is a string
+==================
+
+(* a (* nested *) comment, "with *) in a string" *)
+(** a doc comment *)
+(**)
+Check 1.
+
+---
+
+(source_file
+  (comment)
+  (doc_comment)
+  (comment)
+  (sentence (identifier) (number)))
+
+==================
+JSX and Unicode symbols
+==================
+
+view := <div className="counter"> <h1> "A counter" </h1> {to_string count} </div>.
+stock := <["apples" := 3]> ∅.
+
+---
+
+(source_file
+  (definition
+    name: (identifier)
+    (jsx_open) (identifier) (operator) (string) (operator)
+    (jsx_open) (operator) (string) (jsx_close)
+    (braced (identifier) (identifier))
+    (jsx_close))
+  (definition
+    name: (identifier)
+    (operator) (bracketed (string) (number)) (operator) (operator)))
+
+==================
+#lang lisp: s-expressions, where (* is a call
+==================
+
+#lang lisp
+; a comment
+(define (square x) (* x x))
+(square 12)
+
+---
+
+(source_file
+  (lang_line)
+  (line_comment)
+  (list (atom) (list (atom) (atom)) (list (atom) (atom) (atom)))
+  (list (atom) (atom)))

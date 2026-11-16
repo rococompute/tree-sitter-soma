@@ -1,0 +1,21 @@
+{
+  "grammars": [
+    {
+      "name": "soma",
+      "camelcase": "Soma",
+      "scope": "source.soma",
+      "path": ".",
+      "file-types": ["soma", "exp", "ext"],
+      "highlights": "queries/highlights.scm",
+      "injection-regex": "^soma$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Soma grammar for tree-sitter",
+    "links": {
+      "repository": "https://github.com/rococompute/tree-sitter-soma"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+==================
+bare definition
+==================
+
+square (x : N) : N := x * x.
+
+---
+
+(source_file
+  (definition
+    name: (identifier)
+    (parenthesized (identifier) (identifier))
+    (identifier)
+    (identifier) (operator) (identifier)))
+
+==================
+bare definition with no binders, a match and a let
+==================
+
+main : io unit :=
+  let host := "mirageos.org" in
+  match r with
+  | Resolved a => print a
+  | Unresolved _ => exit 1
+  end.
+
+---
+
+(source_file
+  (definition
+    name: (identifier)
+    (identifier) (identifier)
+    (identifier) (identifier) (string) (identifier)
+    (match
+      keyword: (keyword)
+      (identifier) (identifier)
+      (identifier) (identifier) (operator) (identifier) (identifier)
+      (identifier) (identifier) (operator) (identifier) (number)
+      end: (keyword))))
+
+==================
+keyword definitions, with modifiers and attributes
+==================
+
+Definition https_get (host path : string) : io answered := https "GET" host 443 path nil "".
+Local Definition x := 1.
+#[export] Instance show_t : Show t := { to_string x := "t" }.
+Instance : Show u := { to_string _ := "u" }.
+
+---
+
+(source_file
+  (definition
+    keyword: (keyword)
+    name: (identifier)
+    (parenthesized (identifier) (identifier) (identifier))
+    (identifier) (identifier)
+    (identifier) (string) (identifier) (number) (identifier) (identifier) (string))
+  (definition (keyword) keyword: (keyword) name: (identifier) (number))
+  (definition
+    (attribute (identifier))
+    keyword: (keyword)
+    name: (identifier)
+    (identifier) (identifier)
+    (braced (identifier) (identifier) (string)))
+  (definition
+    keyword: (keyword)
+    (identifier) (identifier)
+    (braced (identifier) (identifier) (string))))
+
+==================
+an Inductive's constructors
+==================
+
+Inductive resolved : Type :=
+| Resolved (address : string)   (* an IPv4 address *)
+| Unresolved (why : string).
+Inductive action := Increment.
+
+---
+
+(source_file
+  (inductive
+    keyword: (keyword)
+    name: (identifier)
+    (identifier)
+    (constructor name: (identifier) (parenthesized (identifier) (identifier)))
+    (comment)
+    (constructor name: (identifier) (parenthesized (identifier) (identifier))))
+  (inductive keyword: (keyword) name: (identifier) (constructor name: (identifier))))
